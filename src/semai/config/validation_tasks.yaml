@@ -1,0 +1,74 @@
+# Validation Crew Task Configuration
+
+documentation_compliance_task:
+  description: >
+    Review the "ComputationalCrewDocumentation" output from the Computational Crew.
+    Compare all documented outputs against the "InstitutionLegalChecklist" requirements.
+    Verify strict adherence to legal and institutional requirements.
+    Identify any abnormal details, discrepancies, or potential compliance issues.
+    Flag items requiring human supervisor attention.
+  expected_output: >
+    A compliance checklist with pass/fail status for each requirement, and detailed
+    comments on possible issues, discrepancies, or areas requiring human review.
+  agent: documentation_compliance_checker
+
+model_replication_task:
+  description: >
+    Using the documented hyperparameters from "ComputationalCrewDocumentation":
+    1. Replicate the exact model training procedure
+    2. Run training on the same training dataset
+    3. Evaluate on the test dataset
+    4. Calculate all performance metrics (MSE, RMSE, MAE, R-squared)
+    5. Compare reproduced metrics with documented results
+    6. Flag any significant discrepancies (>5% deviation)
+  expected_output: >
+    A summary table comparing documented outputs and replicated outputs with columns:
+    Metric, Documented Value, Replicated Value, Difference, Status (Pass/Fail).
+  agent: model_replication_agent
+
+robustness_check_task:
+  description: >
+    Using the best model configuration from the Computational Crew:
+    1. Load the 'train_drifted' dataset with synthetic variations
+    2. Train the model on drifted data
+    3. Evaluate performance metrics on standard test set
+    4. Compare robustness metrics with original baseline results
+    5. Assess model stability under distribution shift
+    6. Document any performance degradation patterns
+  expected_output: >
+    Comparison of robustness performance with original results including:
+    degradation analysis, stability assessment, and recommendations for
+    improving model robustness if significant issues are detected.
+  agent: robustness_check_agent
+
+compliance_judgment_task:
+  description: >
+    Conduct comprehensive assessment of both Computational Crew and Validation Crew workflows:
+    1. Interpretability: Assess model explainability and documentation clarity
+    2. Legal Compliance: Verify adherence to institutional and regulatory requirements
+    3. Conceptual Soundness: Evaluate methodology, assumptions, and theoretical basis
+    4. Robustness: Review model stability under various conditions
+    5. Synthesize findings from all validation agents
+    6. Provide actionable recommendations for human supervisor
+  expected_output: >
+    A comprehensive assessment report covering interpretability, legal compliance,
+    conceptual soundness, and robustness with specific recommendations for
+    addressing issues or making effective adjustments to the system.
+  agent: compliance_judge_agent
+
+comprehensive_documentation_task:
+  description: >
+    Compile all outputs from both Computational Crew and Validation Crew into
+    a single comprehensive summary document:
+    1. Executive summary of the entire workflow
+    2. Computational Crew results and decisions
+    3. Validation Crew findings (compliance, replication, robustness)
+    4. Compliance Judge assessment and recommendations
+    5. Overall conclusions and next steps
+    6. Appendices with detailed metrics and logs
+  expected_output: >
+    "ComprehensiveSummary" - A complete technical and compliance document combining
+    all crew outputs, assessments, and recommendations in a structured format
+    suitable for stakeholder review and regulatory purposes.
+  agent: validation_documentation_writer
+  output_file: 'ComprehensiveSummary.md'

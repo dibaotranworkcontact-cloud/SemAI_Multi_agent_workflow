@@ -1,0 +1,44 @@
+{
+  "quest_id": "QUEST_BENCHMARK_dc1ea4b2",
+  "quest_name": "Test Accuracy",
+  "quest_type": "benchmark",
+  "description": "Test model pricing accuracy",
+  "model_scope": [
+    "neural_network_sde",
+    "nnlv"
+  ],
+  "data_params": {
+    "spot_price_range": [
+      80,
+      120
+    ],
+    "strike_multipliers": [
+      0.9,
+      0.95,
+      1.0,
+      1.05,
+      1.1
+    ],
+    "time_to_maturity_days": [
+      30,
+      60,
+      90,
+      180
+    ],
+    "volatility_range": [
+      0.1,
+      0.5
+    ],
+    "samples": 100,
+    "risk_free_rate": 0.02,
+    "dividend_yield": 0.01
+  },
+  "success_criteria": [
+    "MSE < 0.01",
+    "R\u00b2 > 0.95"
+  ],
+  "expected_output": "Performance metrics (MSE, MAE, R\u00b2) for neural_network_sde, nnlv on standardized dataset",
+  "difficulty": "Easy",
+  "created_at": "2025-12-10T13:53:29.088683",
+  "metadata": {}
+}

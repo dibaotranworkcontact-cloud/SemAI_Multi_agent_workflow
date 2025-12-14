@@ -1,0 +1,35 @@
+Data Source Information:
+
+ - Source Type: Local Dataset
+ - Path: C:\Users\ACER\.crewai\semai\src\semai\derivative_pricing_train.csv
+ - Splitting Methodology: To be determined
+
+Dataset Dimensions:
+ - Total Rows: 240000
+ - Total Columns: 7
+
+Dataset Schema:
+ - Columns: ['S', 'K', 'T', 'q', 'r', 'sigma', 'C']
+ - Data Types:
+   S: float64
+   K: float64
+   T: float64
+   q: float64
+   r: float64
+   sigma: float64
+   C: float64
+
+Data Quality Notes:
+ - No missing values
+ - Data Range:
+   - S: 10.001126 to 499.996101
+   - K: 7.000334 to 649.998916
+   - T: 0.003971 to 2.999985
+   - q: 1.517677e-08 to 2.999993
+   - r: 0.01 to 0.03
+   - sigma: 0.05 to 0.899999
+   - C: 0.0 to 492.02057
+
+Training Dataset: To be split
+Testing Dataset: To be split
+Tuning Subsample: To be determined

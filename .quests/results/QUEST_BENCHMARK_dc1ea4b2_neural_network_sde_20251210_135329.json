@@ -1,0 +1,12 @@
+{
+  "result_id": "QUEST_BENCHMARK_dc1ea4b2_neural_network_sde_20251210_135329",
+  "quest_id": "QUEST_BENCHMARK_dc1ea4b2",
+  "model_name": "neural_network_sde",
+  "timestamp": "2025-12-10T13:53:29.093461",
+  "status": "completed",
+  "metrics": {
+    "mse": 0.008,
+    "mae": 0.02,
+    "r2": 0.96
+  }
+}

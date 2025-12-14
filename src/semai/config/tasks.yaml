@@ -1,0 +1,99 @@
+data_extraction_task:
+  description: >
+    You have multiple options for data extraction:
+    
+    OPTION 1 - Local Dataset: The dataset file is available at {dataset_url}
+    Use the Load CSV File tool to load the dataset from this path.
+    
+    OPTION 2 - Alpha Vantage API: Fetch live stock market data using the Alpha Vantage API.
+    Available symbols include AAPL, MSFT, GOOGL, AMZN, NVDA, SPY, QQQ, VTI, TSLA, META
+    Data types: daily, weekly, monthly, or auto-generate synthetic derivative pricing datasets
+    
+    OPTION 3 - URL Source: Download dataset from a URL (HTTP/HTTPS, Kaggle, GitHub, etc.)
+    
+    For any selected source, perform proper data splitting into training and testing sets with 
+    appropriate stratification. Create a subsample for hyperparameter tuning.
+    Document data source information, dataset schema, and splitting strategy used.
+  expected_output: >
+    Training dataset, testing dataset, and tuning subsample with documentation of data sources,
+    data source type (local/api/url), splitting methodology, dataset dimensions, schema information, 
+    and data quality notes.
+  agent: data_extraction_agent
+
+eda_task:
+  description: >
+    Perform in-depth exploratory data analysis. Detect and document missing values, identify class
+    imbalance issues, spot outliers using statistical methods, and analyze feature distributions and
+    correlations. Provide comprehensive insights for next steps.
+  expected_output: >
+    Detailed EDA report including: missing value analysis, class imbalance assessment, outlier detection
+    results, feature distribution analysis, correlation matrices, statistical summaries, and actionable
+    insights for feature engineering and modeling decisions.
+  agent: eda_agent
+
+feature_engineering_task:
+  description: >
+    Build and implement a comprehensive preprocessing pipeline including: KNN imputation for missing values,
+    normalization techniques, ordinal encoding for categorical features, and custom categorical imputation.
+    Document all preprocessing steps, rationale, and their effects on data characteristics.
+  expected_output: >
+    Preprocessing pipeline implementation with documentation of: all preprocessing steps, KNN imputation
+    parameters, normalization methods used, encoding strategies, custom imputation logic, before/after
+    data statistics, and feature importance indicators from preprocessing.
+  agent: feature_engineering_agent
+
+meta_tuning_task:
+  description: >
+    Conduct comprehensive grid search on the tuning subsample to identify optimal hyperparameters for
+    multiple candidate models. Evaluate each configuration systematically. Perform model selection by
+    comparing different algorithms. Document the search space, results, and final recommendations.
+  expected_output: >
+    Grid search results with: tested hyperparameter combinations, performance metrics for each configuration,
+    model comparison analysis, optimal hyperparameters identified, model selection justification, convergence
+    plots, and detailed recommendations for the best model.
+  agent: meta_tuning_agent
+
+model_training_task:
+  description: >
+    Train the chosen model using optimal hyperparameters on the training dataset. Monitor training progress,
+    handle convergence issues, and save the trained model to a predefined directory. Document training time,
+    resource usage, and any issues encountered.
+  expected_output: >
+    Trained model saved to predefined directory with: training logs, convergence metrics, training time
+    and resource usage statistics, model checkpoints, model architecture documentation, and deployment
+    readiness assessment.
+  agent: model_training_agent
+
+model_evaluation_task:
+  description: >
+    Evaluate the trained model on test data. Compute comprehensive metrics including accuracy, F1-score,
+    precision, recall, and AUC. Analyze model behavior, identify strengths and weaknesses, and provide
+    insights for improvement.
+  expected_output: >
+    Comprehensive evaluation report with: accuracy, F1-score, precision, recall, and AUC metrics,
+    confusion matrix, learning curves, performance analysis across different data segments, error analysis,
+    model behavior insights, and recommendations for optimization.
+  agent: model_evaluation_agent
+
+judge_task:
+  description: >
+    Assess the performance and quality of all agents throughout the ML pipeline. Review outputs from each
+    stage, identify bottlenecks or issues, evaluate adherence to quality standards, and provide comprehensive
+    reasoning and recommendations to support human experts in decision-making.
+  expected_output: >
+    Comprehensive management review report with: assessment of each agent's performance, quality evaluation
+    at each pipeline stage, identified bottlenecks and issues, adherence to quality standards analysis,
+    reasoning for recommendations, overall pipeline quality score, and actionable next steps.
+  agent: judge_agent
+
+documentation_task:
+  description: >
+    Compile comprehensive technical documentation by aggregating outputs from all workflow stages. Document
+    the entire ML pipeline from data extraction through model evaluation. Ensure clarity and completeness
+    for technical and non-technical stakeholders, facilitating reproducibility and knowledge transfer.
+  expected_output: >
+    Complete technical documentation including: project overview, data extraction and splitting methodology,
+    EDA findings and insights, feature engineering approach and preprocessing pipeline details, hyperparameter
+    tuning process and results, model training details, evaluation metrics and analysis, conclusions, and
+    recommendations. Formatted for clarity and accessibility.
+  agent: documentation_writer
